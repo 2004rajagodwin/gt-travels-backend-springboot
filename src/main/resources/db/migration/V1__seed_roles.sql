@@ -1,0 +1,12 @@
+-- Seed required application roles (idempotent for existing databases)
+INSERT INTO roles (name)
+SELECT 'ROLE_CUSTOMER' FROM DUAL
+WHERE NOT EXISTS (SELECT 1 FROM roles WHERE name = 'ROLE_CUSTOMER');
+
+INSERT INTO roles (name)
+SELECT 'ROLE_OPERATOR' FROM DUAL
+WHERE NOT EXISTS (SELECT 1 FROM roles WHERE name = 'ROLE_OPERATOR');
+
+INSERT INTO roles (name)
+SELECT 'ROLE_ADMIN' FROM DUAL
+WHERE NOT EXISTS (SELECT 1 FROM roles WHERE name = 'ROLE_ADMIN');
